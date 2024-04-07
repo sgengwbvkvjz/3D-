@@ -1,7 +1,6 @@
-![image](https://github.com/sgengwbvkvjz/3D-/assets/127504473/183733a5-05b2-4b27-8253-676a41ba0243)代码参考自 https://github.com/kzbkzb/Python-AI 《深度学习100例》/23-day-3D医疗影像识别/深度学习100例-卷积神经网络-3D医疗影像识别 - 第23天.ipynb； 
+代码参考自 https://github.com/kzbkzb/Python-AI 《深度学习100例》/23-day-3D医疗影像识别/深度学习100例-卷积神经网络-3D医疗影像识别 - 第23天.ipynb； 
 改写为Pytorch框架下的CT扫描3D图像分类； 
 数据集：链接：https://pan.baidu.com/s/1K5pdVp_Q3vsLPTMzVnhJwQ 提取码：3va2；（挺大的没VIP下了2、3个小时）
-
 
 model.py中
 3D卷积和多通道卷积
@@ -13,7 +12,6 @@ model.py中
 2D conv的卷积核就是(C,H,W)，因此，对于RGB图像做2D卷积，卷积核在输入图像上的的空间维度（即(height,width)两维）上进行进行滑窗操作，卷积核可以是conv2D(3,3) 而不该是conv3D(3,3,3)。
 3D conv的卷积核就是(N，C，Depth，H，W)，其中D就是多出来的第三维，根据具体应用，在视频中就是时间维，在CT图像中就是层数维。
 
-
 3D 卷积神经网络模型（ThreeDCNN），因此模型的输入要求是 3D 图像数据。
 具体来说，模型输入的要求为：
 数据应该是 3D 图像数据，通常表示为 (depth, height, width)，其中 depth 表示图像的深度或切片数量，height 表示图像的高度，width 表示图像的宽度。
@@ -21,7 +19,6 @@ model.py中
 输入的图像数据需要进行预处理，如归一化、调整大小等，以满足模型的输入要求。
 在此例中，模型的输入通道数（channels）为 1，表示灰度图像，因此每个图像是单通道的。因此，输入张量的形状应该是 (batch_size, 1, depth, height, width)，其中 batch_size 表示每个批次的样本数量。
 为了符合模型的输入要求，代码中的数据加载器 MyData 在 __getitem__ 方法中对图像数据进行预处理和调整，并将其转换为 PyTorch 的张量形式。同时，在返回图像数据之前，还通过 img.unsqueeze(0) 方法添加了一个维度，以匹配模型的输入形状。
-
 
 train.py中
 设置设备类型为 'cuda'，表示如果有可用的 CUDA 设备，则使用 CUDA，否则使用 CPU。
